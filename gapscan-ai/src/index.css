@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System: Dark-first with glassy surfaces, gradients, and motion.
+   All colors use HSL tokens. */
+
+@layer base {
+  :root {
+    /* Light theme (auto) */
+    --background: 210 33% 98%; /* #F7F9FC */
+    --foreground: 222 47% 11%;
+
+    --card: 210 40% 99%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary: Indigo 600 */
+    --primary: 330 80% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 215 16% 92%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 215 16% 92%;
+    --muted-foreground: 215 16% 46%;
+
+    --accent: 215 16% 92%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 350 89% 62%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 20% 89%;
+    --input: 215 20% 89%;
+    --ring: 330 80% 60%;
+
+    --radius: 1rem; /* rounded-2xl feel */
+
+    /* Sidebar (light) */
+    --sidebar-background: 210 33% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 330 80% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 215 16% 92%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 215 20% 89%;
+    --sidebar-ring: 330 80% 60%;
+
+    /* Status colors */
+    --success: 158 72% 46%;
+    --success-foreground: 160 84% 14%;
+    --warning: 36 92% 51%;
+    --warning-foreground: 30 92% 10%;
+    --danger: 350 89% 62%;
+    --danger-foreground: 350 90% 20%;
+
+    /* Gradients & shadows */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.85));
+    --glass-shadow: 0 10px 30px -10px hsl(var(--primary) / 0.35);
+  }
+
+  .dark {
+    /* Dark theme */
+    --background: 215 28% 7%; /* ~#0B0F14 */
+    --foreground: 210 40% 98%;
+
+    --card: 215 28% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 28% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 330 82% 64%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 215 20% 14%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 20% 14%;
+    --muted-foreground: 215 16% 70%;
+
+    --accent: 215 20% 14%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 350 70% 40%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 20% 18%;
+    --input: 215 20% 18%;
+    --ring: 330 82% 64%;
+
+    /* Sidebar (dark) */
+    --sidebar-background: 215 28% 7%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 330 82% 64%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 215 20% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 20% 18%;
+    --sidebar-ring: 330 82% 64%;
+
+    /* Status colors */
+    --success: 158 72% 46%;
+    --success-foreground: 158 85% 12%;
+    --warning: 36 92% 51%;
+    --warning-foreground: 36 92% 12%;
+    --danger: 350 89% 62%;
+    --danger-foreground: 350 90% 18%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.85));
+    --glass-shadow: 0 20px 60px -20px hsl(var(--primary) / 0.35);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-sans; }
+}
+
+/* Utilities & component styles */
+@layer components {
+  .glass-panel {
+    @apply bg-card/10 backdrop-blur-md border border-border/50 rounded-2xl shadow-lg;
+    box-shadow: var(--glass-shadow);
+  }
+  .panel-hover {
+    @apply transition-transform duration-200 hover:scale-[1.01];
+  }
+  .cta {
+    background: var(--gradient-primary);
+  }
+}
+
+@layer utilities {
+  .story-link { position: relative; display: inline-block; }
+  .story-link::after {
+    content: "";
+    position: absolute; left: 0; bottom: -2px; height: 2px; width: 100%;
+    transform: scaleX(0); transform-origin: 100% 100%; transition: transform 300ms ease;
+    background: hsl(var(--primary));
+  }
+  .story-link:hover::after { transform: scaleX(1); transform-origin: 0 100%; }
+
+  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
+  .pulse { animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+}
